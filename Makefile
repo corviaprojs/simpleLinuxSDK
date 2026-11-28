@@ -36,7 +36,7 @@ endif
 	fi
 
 check_existing: default_checks
-	@test -f "$(workdir)/build/$(CONFIG)" || (echo "This is already generated! Use sudo make CONFIG=$(CONFIG) distclean to clean it." && exit 1)
+	@test ! -e "$(configBuildPath)" || { echo "Already generated! Run: sudo make CONFIG=$(CONFIG) distclean"; exit 1; }
 
 # chroot into the filesystem
 chroot: default_checks 
